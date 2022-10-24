@@ -1,4 +1,4 @@
-package sk.durixx.library.config;
+package sk.durixx.library;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,9 +1,9 @@
-package sk.durixx.library.config.open;
+package sk.durixx.library.open;
 
+import sk.durixx.library.model.dto.LibraryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import sk.durixx.library.config.domain.LibraryService;
-import sk.durixx.library.config.model.Library;
+import sk.durixx.library.domain.LibraryService;
 
 @Component
 public class LibraryApi {
@@ -11,7 +11,7 @@ public class LibraryApi {
     @Autowired
     LibraryService libraryService;
 
-    public void createNewLibrary(Library library) {
+    public void createNewLibrary(LibraryDto library) {
         libraryService.createNewLibrary(library);
     }
 }
