@@ -20,30 +20,44 @@ public class Library {
     private long id;
 
     @Column(
-            name = "name_of_library",
-            updatable = false
+            name = "name_of_library"
     )
     private String nameOfLibrary;
 
     @Column(
-            name = "country",
-            updatable = false
+            name = "country"
     )
     private String country;
 
     @Column(
-            name = "city",
-            updatable = false
+            name = "city"
     )
     private String city;
 
     @Column(
-            name = "adress",
-            updatable = false
+            name = "adress"
     )
     private String address;
 
     public Library() {
+    }
+
+    public Library(Builder builder) {
+        this.id = builder.id;
+        this.nameOfLibrary = builder.nameOfLibrary;
+        this.address = builder.address;
+        this.city = builder.city;
+        this.country = builder.country;
+    }
+
+    public static Library fromDto(LibraryDto dto) {
+        Builder builder = new Builder();
+        return builder.withId(dto.getId())
+                .withNameOfLibrary(dto.getNameOfLibrary())
+                .withAddress(dto.getAddress())
+                .withCountry(dto.getCountry())
+                .withCity(dto.getCity())
+                .build();
     }
 
     public long getId() {
@@ -66,19 +80,42 @@ public class Library {
         return address;
     }
 
-    public Library(String nameOfLibrary, String country, String city, String address) {
-        this.nameOfLibrary = nameOfLibrary;
-        this.country = country;
-        this.city = city;
-        this.address = address;
-    }
+    private static class Builder {
 
-    public static Library fromDto(LibraryDto dto) {
-        return new Library(
-                dto.getNameOfLibrary(),
-                dto.getCountry(),
-                dto.getCity(),
-                dto.getAddress()
-        );
+        private long id;
+        private String nameOfLibrary;
+        private String country;
+        private String city;
+        private String address;
+
+        public Builder withId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withNameOfLibrary(String nameOfLibrary) {
+            this.nameOfLibrary = nameOfLibrary;
+            return this;
+        }
+
+        public Builder withCountry(String country) {
+            this.country = country;
+            return this;
+        }
+
+        public Builder withCity(String city) {
+            this.city = city;
+            return this;
+        }
+
+        public Builder withAddress(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Library build() {
+            return new Library(this);
+        }
+
     }
 }
