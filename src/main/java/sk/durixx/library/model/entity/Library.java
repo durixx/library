@@ -20,24 +20,29 @@ public class Library {
     private long id;
 
     @Column(
-            name = "name_of_library"
+            name = "name_of_library",
+            nullable = false
     )
     private String nameOfLibrary;
 
     @Column(
-            name = "country"
+            name = "country",
+            nullable = false
     )
     private String country;
 
     @Column(
-            name = "city"
+            name = "city",
+            nullable = false
     )
     private String city;
 
     @Column(
-            name = "adress"
+            name = "address",
+            nullable = false
     )
     private String address;
+
 
     public Library() {
     }
@@ -51,8 +56,7 @@ public class Library {
     }
 
     public static Library fromDto(LibraryDto dto) {
-        Builder builder = new Builder();
-        return builder.withId(dto.getId())
+        return new Builder().withId(dto.getId())
                 .withNameOfLibrary(dto.getNameOfLibrary())
                 .withAddress(dto.getAddress())
                 .withCountry(dto.getCountry())

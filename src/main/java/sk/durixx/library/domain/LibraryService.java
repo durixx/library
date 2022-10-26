@@ -6,6 +6,11 @@ import org.springframework.stereotype.Service;
 import sk.durixx.library.model.entity.Library;
 import sk.durixx.library.repository.LibraryRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class LibraryService {
 
@@ -13,11 +18,30 @@ public class LibraryService {
     private LibraryRepository libraryRepository;
 
     public void createNewLibrary(LibraryDto library) {
-        validateLibrary(library);
+        validateLibrary(Library.fromDto(library));
         libraryRepository.save(Library.fromDto(library));
     }
 
-    private void validateLibrary(LibraryDto library) {
+    public LibraryDto readLibrary(Long id) {
+        return LibraryDto.fromLibrary(libraryRepository.findById(id).orElseThrow());
+    }
+
+    public void updateLibrary(LibraryDto library) {
+        libraryRepository.save(Library.fromDto(library));
+    }
+
+    public void deleteLibrary(Long id) {
+        libraryRepository.delete(libraryRepository.getReferenceById(id));
+    }
+
+    public List<LibraryDto> readAll() {
+       return libraryRepository.findAll()
+               .stream()
+               .map(LibraryDto::fromLibrary)
+               .toList();
+    }
+
+    private void validateLibrary(Library library) {
         if (library.getNameOfLibrary().isEmpty()) throw new IllegalArgumentException("please add name");
         if (library.getCountry().isEmpty()) throw new IllegalArgumentException("please add county");
         if (library.getAddress().isEmpty()) throw new IllegalArgumentException("please add address");

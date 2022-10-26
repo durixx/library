@@ -1,5 +1,7 @@
 package sk.durixx.library.model.dto;
 
+import sk.durixx.library.model.entity.Library;
+
 public class LibraryDto {
 
     private long id;
@@ -7,6 +9,37 @@ public class LibraryDto {
     private String country;
     private String city;
     private String address;
+
+    public LibraryDto() {
+
+    }
+
+    public LibraryDto(Builder builder) {
+        this.id = builder.id;
+        this.nameOfLibrary = builder.nameOfLibrary;
+        this.address = builder.address;
+        this.city = builder.city;
+        this.country = builder.country;
+    }
+
+    public static LibraryDto fromLibrary(Library library) {
+        return new LibraryDto.Builder().withId(library.getId())
+                .withNameOfLibrary(library.getNameOfLibrary())
+                .withAddress(library.getAddress())
+                .withCountry(library.getCountry())
+                .withCity(library.getCity())
+                .withId(library.getId())
+                .build();
+    }
+
+    public static LibraryDto withBuilder(String nameOfLibrary, String address, String city, String country) {
+        return new Builder()
+                .withNameOfLibrary(nameOfLibrary)
+                .withAddress(address)
+                .withCity(city)
+                .withCountry(country)
+                .build();
+    }
 
     public long getId() {
         return id;
@@ -48,13 +81,43 @@ public class LibraryDto {
         this.address = address;
     }
 
-    public LibraryDto() {
-    }
 
-    public LibraryDto(String nameOfLibrary, String country, String city, String address) {
-        this.nameOfLibrary = nameOfLibrary;
-        this.country = country;
-        this.city = city;
-        this.address = address;
+    private static class Builder {
+
+        private long id;
+        private String nameOfLibrary;
+        private String country;
+        private String city;
+        private String address;
+
+        public LibraryDto.Builder withId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withNameOfLibrary(String nameOfLibrary) {
+            this.nameOfLibrary = nameOfLibrary;
+            return this;
+        }
+
+        public Builder withCountry(String country) {
+            this.country = country;
+            return this;
+        }
+
+        public Builder withCity(String city) {
+            this.city = city;
+            return this;
+        }
+
+        public Builder withAddress(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public LibraryDto build() {
+            return new LibraryDto(this);
+        }
+
     }
 }
