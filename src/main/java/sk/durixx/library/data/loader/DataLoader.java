@@ -7,6 +7,9 @@ import sk.durixx.library.model.dto.LibraryDto;
 import sk.durixx.library.model.entity.Library;
 import sk.durixx.library.open.LibraryApi;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class DataLoader {
 
@@ -15,8 +18,33 @@ public class DataLoader {
 
     @PostConstruct
     public void loadData() {
-        libraryApi.createNewLibrary(LibraryDto.withBuilder("Lib1", "Malinova", "Poprad","Slovakia"));
-        libraryApi.createNewLibrary(LibraryDto.withBuilder("Lib2", "Jahodova", "Koice","Nemecko"));
-        libraryApi.createNewLibrary(LibraryDto.withBuilder("Lib3", "Horska", "Presov","Polsko"));
+        LibraryDto lib1 = new LibraryDto();
+        lib1.setNameOfLibrary("Lib1");
+        lib1.setAddress("Malinova");
+        lib1.setCity("Poprad");
+        lib1.setCountry("Nemecko");
+
+
+        LibraryDto lib2 = new LibraryDto();
+        lib2.setNameOfLibrary("Lib2");
+        lib2.setAddress("Jahodova");
+        lib2.setCity("Koice");
+        lib2.setCountry("Slovensko");
+
+
+        LibraryDto lib3 = new LibraryDto();
+        lib3.setNameOfLibrary("Lib3");
+        lib3.setAddress("Horska");
+        lib3.setCity("Presov");
+        lib3.setCountry("Polsko");
+
+        libraryApi.createNewLibrary(lib1);
+        libraryApi.createNewLibrary(lib2);
+        libraryApi.createNewLibrary(lib3);
     }
+
+
+
+
+
 }

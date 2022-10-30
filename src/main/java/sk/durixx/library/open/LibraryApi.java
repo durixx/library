@@ -4,10 +4,9 @@ import sk.durixx.library.model.dto.LibraryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import sk.durixx.library.domain.LibraryService;
-import sk.durixx.library.model.entity.Library;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Component
 public class LibraryApi {
@@ -20,7 +19,7 @@ public class LibraryApi {
     }
 
     public LibraryDto readLibrary(Long id) {
-        return libraryService.readLibrary(id);
+        return LibraryDto.fromLibrary(libraryService.readLibrary(id));
     }
 
     public void updateLibrary(LibraryDto library) {
@@ -32,7 +31,10 @@ public class LibraryApi {
     }
 
     public List<LibraryDto> readAll() {
-        return libraryService.readAll();
+        return libraryService.readAll()
+                .stream()
+                .map(LibraryDto::fromLibrary)
+                .toList();
     }
 
 }

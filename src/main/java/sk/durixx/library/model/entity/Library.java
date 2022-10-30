@@ -47,7 +47,7 @@ public class Library {
     public Library() {
     }
 
-    public Library(Builder builder) {
+    private Library(Builder builder) {
         this.id = builder.id;
         this.nameOfLibrary = builder.nameOfLibrary;
         this.address = builder.address;

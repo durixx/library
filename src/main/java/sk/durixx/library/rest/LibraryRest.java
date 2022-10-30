@@ -3,11 +3,9 @@ package sk.durixx.library.rest;
 import sk.durixx.library.model.dto.LibraryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sk.durixx.library.model.entity.Library;
-import sk.durixx.library.open.LibraryApi;
 
+import sk.durixx.library.open.LibraryApi;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/library")
@@ -16,27 +14,27 @@ public class LibraryRest {
     @Autowired
     public LibraryApi libraryApi;
 
-    @PostMapping("/create")
+    @PostMapping
     public void createNewLibrary(@RequestBody LibraryDto library) {
         libraryApi.createNewLibrary(library);
     }
 
-    @GetMapping("/read/{id}")
+    @GetMapping("{id}")
     public LibraryDto readLibrary(@PathVariable Long id) {
         return libraryApi.readLibrary(id);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public void updateLibrary(@RequestBody LibraryDto library) {
         libraryApi.updateLibrary(library);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("{id}")
     public void deleteLibrary(@PathVariable Long id) {
         libraryApi.deleteLibrary(id);
     }
 
-    @GetMapping("read/all")
+    @GetMapping("/all")
     public List<LibraryDto> readAll() {
         return libraryApi.readAll();
     }

@@ -22,8 +22,8 @@ public class LibraryService {
         libraryRepository.save(Library.fromDto(library));
     }
 
-    public LibraryDto readLibrary(Long id) {
-        return LibraryDto.fromLibrary(libraryRepository.findById(id).orElseThrow());
+    public Library readLibrary(Long id) {
+        return libraryRepository.findById(id).orElseThrow();
     }
 
     public void updateLibrary(LibraryDto library) {
@@ -34,11 +34,8 @@ public class LibraryService {
         libraryRepository.delete(libraryRepository.getReferenceById(id));
     }
 
-    public List<LibraryDto> readAll() {
-       return libraryRepository.findAll()
-               .stream()
-               .map(LibraryDto::fromLibrary)
-               .toList();
+    public List<Library> readAll() {
+       return libraryRepository.findAll();
     }
 
     private void validateLibrary(Library library) {

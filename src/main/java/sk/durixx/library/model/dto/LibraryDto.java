@@ -14,7 +14,7 @@ public class LibraryDto {
 
     }
 
-    public LibraryDto(Builder builder) {
+    private LibraryDto(Builder builder) {
         this.id = builder.id;
         this.nameOfLibrary = builder.nameOfLibrary;
         this.address = builder.address;
@@ -29,15 +29,6 @@ public class LibraryDto {
                 .withCountry(library.getCountry())
                 .withCity(library.getCity())
                 .withId(library.getId())
-                .build();
-    }
-
-    public static LibraryDto withBuilder(String nameOfLibrary, String address, String city, String country) {
-        return new Builder()
-                .withNameOfLibrary(nameOfLibrary)
-                .withAddress(address)
-                .withCity(city)
-                .withCountry(country)
                 .build();
     }
 
