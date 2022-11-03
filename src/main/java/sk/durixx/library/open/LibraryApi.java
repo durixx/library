@@ -4,6 +4,7 @@ import sk.durixx.library.model.dto.LibraryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import sk.durixx.library.domain.LibraryService;
+import sk.durixx.library.model.entity.Library;
 
 import java.util.List;
 
@@ -37,4 +38,7 @@ public class LibraryApi {
                 .toList();
     }
 
+    public void patchLibrary(LibraryDto library, Long id) {
+        libraryService.patchLibrary(Library.fromDto(library), id);
+    }
 }

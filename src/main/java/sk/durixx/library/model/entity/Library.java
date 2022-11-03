@@ -84,6 +84,26 @@ public class Library {
         return address;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setNameOfLibrary(String nameOfLibrary) {
+        this.nameOfLibrary = nameOfLibrary;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     private static class Builder {
 
         private long id;

@@ -22,7 +22,7 @@ public class LibraryService {
         libraryRepository.save(Library.fromDto(library));
     }
 
-    public Library readLibrary(Long id) {
+    public Library  readLibrary(Long id) {
         return libraryRepository.findById(id).orElseThrow();
     }
 
@@ -36,6 +36,17 @@ public class LibraryService {
 
     public List<Library> readAll() {
        return libraryRepository.findAll();
+    }
+
+    public void patchLibrary(Library  library, Long id) {
+        Library loadLibrary = libraryRepository.getReferenceById(id);
+
+        if(library.getNameOfLibrary() != null) loadLibrary.setNameOfLibrary(library.getNameOfLibrary());
+        if(library.getAddress() != null) loadLibrary.setAddress(library.getAddress());
+        if(library.getCity() != null) loadLibrary.setCity(library.getCity());
+        if(library.getCountry() != null) loadLibrary.setCountry(library.getCountry());
+
+        libraryRepository.save(loadLibrary);
     }
 
     private void validateLibrary(Library library) {

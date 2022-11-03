@@ -38,4 +38,9 @@ public class LibraryRest {
     public List<LibraryDto> readAll() {
         return libraryApi.readAll();
     }
+
+    @PatchMapping("/{id}")
+    public void patchLibrary(@RequestBody LibraryDto library, @PathVariable Long id) {
+        libraryApi.patchLibrary(library, id);
+    }
 }
