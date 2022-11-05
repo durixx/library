@@ -26,8 +26,8 @@ public class LibraryService {
         return libraryRepository.findById(id).orElseThrow();
     }
 
-    public void updateLibrary(LibraryDto library) {
-        libraryRepository.save(Library.fromDto(library));
+    public void updateLibrary(Library library) {
+        libraryRepository.save(library);
     }
 
     public void deleteLibrary(Long id) {

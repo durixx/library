@@ -24,7 +24,7 @@ public class LibraryApi {
     }
 
     public void updateLibrary(LibraryDto library) {
-        libraryService.updateLibrary(library);
+        libraryService.updateLibrary(Library.fromDto(library));
     }
 
     public void deleteLibrary(Long id) {
