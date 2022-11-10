@@ -4,9 +4,8 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import sk.durixx.library.model.dto.LibraryDto;
-import sk.durixx.library.model.entity.Library;
+import sk.durixx.library.model.dto.RackDto;
 import sk.durixx.library.open.LibraryApi;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +17,16 @@ public class DataLoader {
 
     @PostConstruct
     public void loadData() {
+
+        List<RackDto> rackList = new ArrayList<>();
+
         LibraryDto lib1 = new LibraryDto();
         lib1.setNameOfLibrary("Lib1");
         lib1.setAddress("Malinova");
         lib1.setCity("Poprad");
         lib1.setCountry("Nemecko");
+        lib1.setRackList(rackList);
+
 
 
         LibraryDto lib2 = new LibraryDto();
@@ -30,6 +34,7 @@ public class DataLoader {
         lib2.setAddress("Jahodova");
         lib2.setCity("Koice");
         lib2.setCountry("Slovensko");
+        lib2.setRackList(rackList);
 
 
         LibraryDto lib3 = new LibraryDto();
@@ -37,6 +42,10 @@ public class DataLoader {
         lib3.setAddress("Horska");
         lib3.setCity("Presov");
         lib3.setCountry("Polsko");
+        lib3.setRackList(rackList);
+
+
+
 
         libraryApi.createNewLibrary(lib1);
         libraryApi.createNewLibrary(lib2);

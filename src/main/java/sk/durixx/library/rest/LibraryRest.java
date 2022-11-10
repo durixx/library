@@ -19,7 +19,7 @@ public class LibraryRest {
         libraryApi.createNewLibrary(library);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public LibraryDto readLibrary(@PathVariable Long id) {
         return libraryApi.readLibrary(id);
     }
@@ -29,7 +29,7 @@ public class LibraryRest {
         libraryApi.updateLibrary(library);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteLibrary(@PathVariable Long id) {
         libraryApi.deleteLibrary(id);
     }

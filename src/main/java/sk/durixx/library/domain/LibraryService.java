@@ -6,10 +6,7 @@ import org.springframework.stereotype.Service;
 import sk.durixx.library.model.entity.Library;
 import sk.durixx.library.repository.LibraryRepository;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class LibraryService {
@@ -22,7 +19,7 @@ public class LibraryService {
         libraryRepository.save(Library.fromDto(library));
     }
 
-    public Library  readLibrary(Long id) {
+    public Library readLibrary(Long id) {
         return libraryRepository.findById(id).orElseThrow();
     }
 
@@ -35,16 +32,16 @@ public class LibraryService {
     }
 
     public List<Library> readAll() {
-       return libraryRepository.findAll();
+        return libraryRepository.findAll();
     }
 
-    public void patchLibrary(Library  library, Long id) {
+    public void patchLibrary(Library library, Long id) {
         Library loadLibrary = libraryRepository.getReferenceById(id);
 
-        if(library.getNameOfLibrary() != null) loadLibrary.setNameOfLibrary(library.getNameOfLibrary());
-        if(library.getAddress() != null) loadLibrary.setAddress(library.getAddress());
-        if(library.getCity() != null) loadLibrary.setCity(library.getCity());
-        if(library.getCountry() != null) loadLibrary.setCountry(library.getCountry());
+        if (library.getNameOfLibrary() != null) loadLibrary.setNameOfLibrary(library.getNameOfLibrary());
+        if (library.getAddress() != null) loadLibrary.setAddress(library.getAddress());
+        if (library.getCity() != null) loadLibrary.setCity(library.getCity());
+        if (library.getCountry() != null) loadLibrary.setCountry(library.getCountry());
 
         libraryRepository.save(loadLibrary);
     }

@@ -1,6 +1,7 @@
 package sk.durixx.library.model.dto;
 
 import sk.durixx.library.model.entity.Library;
+import java.util.List;
 
 public class LibraryDto {
 
@@ -9,6 +10,7 @@ public class LibraryDto {
     private String country;
     private String city;
     private String address;
+    private List<RackDto> rackList;
 
     public LibraryDto() {
 
@@ -20,6 +22,7 @@ public class LibraryDto {
         this.address = builder.address;
         this.city = builder.city;
         this.country = builder.country;
+        this.rackList = builder.rackList;
     }
 
     public static LibraryDto fromLibrary(Library library) {
@@ -29,6 +32,10 @@ public class LibraryDto {
                 .withCountry(library.getCountry())
                 .withCity(library.getCity())
                 .withId(library.getId())
+                .withRackList(library.getRackList()
+                        .stream()
+                        .map(RackDto::fromRack)
+                        .toList())
                 .build();
     }
 
@@ -72,6 +79,13 @@ public class LibraryDto {
         this.address = address;
     }
 
+    public List<RackDto> getRackList() {
+        return rackList;
+    }
+
+    public void setRackList(List<RackDto> rackList) {
+        this.rackList = rackList;
+    }
 
     private static class Builder {
 
@@ -80,6 +94,7 @@ public class LibraryDto {
         private String country;
         private String city;
         private String address;
+        private List<RackDto> rackList;
 
         public LibraryDto.Builder withId(Long id) {
             this.id = id;
@@ -103,6 +118,11 @@ public class LibraryDto {
 
         public Builder withAddress(String address) {
             this.address = address;
+            return this;
+        }
+
+        public Builder withRackList(List<RackDto> rackList) {
+            this.rackList = rackList;
             return this;
         }
 

@@ -2,6 +2,8 @@ package sk.durixx.library.model.entity;
 
 import jakarta.persistence.*;
 import sk.durixx.library.model.dto.LibraryDto;
+import java.util.List;
+
 
 @Entity
 @Table(name = "library")
@@ -43,6 +45,15 @@ public class Library {
     )
     private String address;
 
+    @OneToMany()
+    @JoinTable(
+            name="LIBRARY_RACK",
+            joinColumns=
+            @JoinColumn(name="LIBRARY_ID", referencedColumnName="ID"),
+            inverseJoinColumns=
+            @JoinColumn(name="RACK_ID", referencedColumnName="ID")
+    )
+    private List<Rack> rackList;
 
     public Library() {
     }
@@ -53,6 +64,7 @@ public class Library {
         this.address = builder.address;
         this.city = builder.city;
         this.country = builder.country;
+        this.rackList = builder.rackList;
     }
 
     public static Library fromDto(LibraryDto dto) {
@@ -61,6 +73,11 @@ public class Library {
                 .withAddress(dto.getAddress())
                 .withCountry(dto.getCountry())
                 .withCity(dto.getCity())
+                .withRackList(dto
+                        .getRackList()
+                        .stream()
+                        .map(Rack::fromDto)
+                        .toList())
                 .build();
     }
 
@@ -104,6 +121,14 @@ public class Library {
         this.address = address;
     }
 
+    public List<Rack> getRackList() {
+        return rackList;
+    }
+
+    public void setRackList(List<Rack> rackList) {
+        this.rackList = rackList;
+    }
+
     private static class Builder {
 
         private long id;
@@ -111,6 +136,7 @@ public class Library {
         private String country;
         private String city;
         private String address;
+        private List<Rack> rackList;
 
         public Builder withId(Long id) {
             this.id = id;
@@ -134,6 +160,11 @@ public class Library {
 
         public Builder withAddress(String address) {
             this.address = address;
+            return this;
+        }
+
+        public Builder withRackList(List<Rack> rackList) {
+            this.rackList = rackList;
             return this;
         }
 
