@@ -20,19 +20,19 @@ public class RackRest {
         rackApi.createNewRack(libId, rackDto);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{libId}/{id}")
     public RackDto readRack(@PathVariable Long libId, @PathVariable Long id) {
-        return rackApi.readRack(id);
+        return rackApi.readRack(libId, id);
     }
 
-    @PutMapping
+    @PutMapping("/{libId}")
     public void updateRack(@PathVariable Long libId, @RequestBody RackDto rackDto) {
-        rackApi.updateRack(rackDto);
+        rackApi.updateRack(libId, rackDto);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{libId}/{id}")
     public void deleteRack(@PathVariable Long libId, @PathVariable Long id) {
-        rackApi.deleteRack(id);
+        rackApi.deleteRack(libId, id);
     }
 
     @GetMapping("/all")
@@ -40,8 +40,13 @@ public class RackRest {
         return rackApi.readAll();
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{libId}/{id}")
     public void patchRack(@PathVariable Long libId, @RequestBody RackDto rackDto, @PathVariable Long id) {
-        rackApi.patchRack(rackDto, id);
+        rackApi.patchRack(libId, rackDto, id);
+    }
+
+    @GetMapping("/{libraryId}/unique-identifier")
+    public String getLabel(@PathVariable Long libraryId) {
+        return rackApi.getLabel(libraryId);
     }
 }

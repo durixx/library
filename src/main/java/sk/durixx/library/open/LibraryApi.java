@@ -41,4 +41,5 @@ public class LibraryApi {
     public void patchLibrary(LibraryDto library, Long id) {
         libraryService.patchLibrary(Library.fromDto(library), id);
     }
+
 }
