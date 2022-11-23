@@ -25,7 +25,6 @@ public class DataLoader {
         lib1.setAddress("Malinova");
         lib1.setCity("Poprad");
         lib1.setCountry("Nemecko");
-        lib1.setRackList(rackList);
 
 
 
@@ -34,7 +33,6 @@ public class DataLoader {
         lib2.setAddress("Jahodova");
         lib2.setCity("Koice");
         lib2.setCountry("Slovensko");
-        lib2.setRackList(rackList);
 
 
         LibraryDto lib3 = new LibraryDto();
@@ -42,7 +40,6 @@ public class DataLoader {
         lib3.setAddress("Horska");
         lib3.setCity("Presov");
         lib3.setCountry("Polsko");
-        lib3.setRackList(rackList);
 
 
 

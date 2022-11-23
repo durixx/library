@@ -1,6 +1,8 @@
 package sk.durixx.library.model.dto;
 
 import sk.durixx.library.model.entity.Library;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryDto {
@@ -10,7 +12,7 @@ public class LibraryDto {
     private String country;
     private String city;
     private String address;
-    private List<RackDto> rackList;
+    private List<RackDto> rackList = new ArrayList<>();
 
     public LibraryDto() {
 
@@ -129,6 +131,5 @@ public class LibraryDto {
         public LibraryDto build() {
             return new LibraryDto(this);
         }
-
     }
 }

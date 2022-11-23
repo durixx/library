@@ -80,17 +80,17 @@ public class Rack {
         private long id;
         private int size;
 
-        public Rack.Builder withId(Long id) {
+        public Builder withId(Long id) {
             this.id = id;
             return this;
         }
 
-        public Rack.Builder withLabel(String label) {
+        public Builder withLabel(String label) {
             this.label = label;
             return this;
         }
 
-        public Rack.Builder withSize(int size) {
+        public Builder withSize(int size) {
             this.size = size;
             return this;
         }

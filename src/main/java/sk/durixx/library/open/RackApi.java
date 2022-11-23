@@ -25,26 +25,32 @@ public class RackApi {
         libraryService.patchLibrary(libraryToEdit, libraryToEdit.getId());
     }
 
-    public RackDto readRack(Long id) {
-        return RackDto.fromRack(rackService.readRack(id));
+    public RackDto readRack(Long libraryId, Long id) {
+        return RackDto.fromRack(rackService.readRack(libraryId, id));
     }
 
-    public void updateRack(RackDto rackDto) {
-        rackService.updateRack(Rack.fromDto(rackDto));
+    public void updateRack(Long libraryId, RackDto rackDto) {
+        rackService.updateRack(libraryId, Rack.fromDto(rackDto));
     }
 
-    public void deleteRack(Long id) {
-        rackService.deleteRack(id);
+    public void deleteRack(Long libId, Long id) {
+        rackService.deleteRack(libId, id);
     }
 
-    public List<RackDto> readAll() {
-        return rackService.readAll()
+    public List<RackDto> readAll(Long idOfLib) {
+        return rackService.readAll(idOfLib)
                 .stream()
                 .map(RackDto::fromRack)
                 .toList();
     }
 
-    public void patchRack(RackDto rackDto, Long id) {
-        rackService.patchRack(Rack.fromDto(rackDto), id);
+    public void patchRack(Long libraryId, RackDto rackDto, Long id) {
+        rackService.patchRack(libraryId, Rack.fromDto(rackDto), id);
+    }
+
+    public RackDto getLabel(Long libraryId) {
+        RackDto rackDto = new RackDto();
+        rackDto.setLabel(libraryService.getLabel(libraryId));
+        return rackDto;
     }
 }

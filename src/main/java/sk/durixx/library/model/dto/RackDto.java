@@ -1,20 +1,10 @@
 package sk.durixx.library.model.dto;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.SequenceGenerator;
 import sk.durixx.library.model.entity.Rack;
 
 public class RackDto {
-    @SequenceGenerator(
-            name = "rack_sequence",
-            sequenceName = "rack_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "rack_sequence"
-    )
+
+
     private long id;
     private int size;
     private String label;

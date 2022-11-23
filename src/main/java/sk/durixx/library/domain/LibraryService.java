@@ -4,9 +4,11 @@ import sk.durixx.library.model.dto.LibraryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.durixx.library.model.entity.Library;
+import sk.durixx.library.model.entity.Rack;
 import sk.durixx.library.repository.LibraryRepository;
 
 import java.util.List;
+
 
 @Service
 public class LibraryService {
@@ -44,6 +46,21 @@ public class LibraryService {
         if (library.getCountry() != null) loadLibrary.setCountry(library.getCountry());
 
         libraryRepository.save(loadLibrary);
+    }
+
+    public String getLabel(Long libraryId) {
+        return Character.toString(libraryRepository
+                .getReferenceById(libraryId)
+                .getRackList().size() + 65);
+    }
+
+    public boolean isRackBelongsToLibrary(Long idOfLibrary, Long idOfRack) {
+        Library libraryToValidate = readLibrary(idOfLibrary);
+        return isRackInList(libraryToValidate.getRackList(), idOfRack);
+    }
+
+    private boolean isRackInList(List<Rack> rackListToCompare, Long idOfRack) {
+        return rackListToCompare.stream().filter(rack -> rack.getId().equals(idOfRack)).count() > 0;
     }
 
     private void validateLibrary(Library library) {
